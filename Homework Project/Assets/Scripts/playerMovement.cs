@@ -7,39 +7,47 @@ public class playerMovement : MonoBehaviour
     // Variables
 
     //speed
-    public float baseSpeed = 10.0f;
+    public float baseSpeed = 2.0f;
     public float jumpSpeed = 10f;
-
+    public float sprintSpeed = 4.0f;
     // direction
-    public Vector3 forwardDirection = new Vector3(0f, 0f, 1f);
-    public Vector3 backDirection = new Vector3(0f, 0f, -1f);
-    public Vector3 leftDirection = new Vector3(-1f, 0f, 0f);
-    public Vector3 rightDirection = new Vector3(1f, 0f, 0f);
-    public Vector3 upwardDirection = new Vector3(0f, 1000f, 0f);
+    public Vector3 forwardDirection = new Vector3(0f, 0f, -1f);
+    public Vector3 backDirection = new Vector3(0f, 0f, 1f);
+    public Vector3 leftDirection = new Vector3(0f, -1f, 0f);
+    public Vector3 rightDirection = new Vector3(0f, 1f, 0f);
+    public Vector3 upwardDirection = new Vector3(0f, 1f, 0f);
     public float distanceTraveled = 0f;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-      
+
 
         // directional movement
+        //up right 
+       
+       
+        
+        // up left
+        //back right
+        //back left
+
         //forward
         bool isForward = false;
-        isForward = (Input.GetKey(KeyCode.W));
-        if ( isForward == true)
+        isForward = (Input.GetKeyDown(KeyCode.W));
+        if (isForward == true)
         {
             float moveStep = baseSpeed * Time.deltaTime;
-            transform.position = transform.position + forwardDirection.normalized * moveStep;
+            transform.position = transform.position + forwardDirection * moveStep;
 
             distanceTraveled = distanceTraveled + moveStep;
         }
@@ -50,7 +58,7 @@ public class playerMovement : MonoBehaviour
         if (isBack == true)
         {
             float moveStep = baseSpeed * Time.deltaTime;
-            transform.position = transform.position + backDirection.normalized * moveStep;
+            transform.position = transform.position + backDirection * moveStep;
 
             distanceTraveled = distanceTraveled + moveStep;
         }
@@ -61,25 +69,27 @@ public class playerMovement : MonoBehaviour
         if (isLeft == true)
         {
             float moveStep = baseSpeed * Time.deltaTime;
-            transform.position = transform.position + leftDirection.normalized * moveStep;
+            transform.position = transform.position + leftDirection * moveStep;
 
             distanceTraveled = distanceTraveled + moveStep;
         }
 
         //right
+
         bool isRight = false;
         isRight = (Input.GetKey(KeyCode.D));
         if (isRight == true)
         {
             float moveStep = baseSpeed * Time.deltaTime;
-            transform.position = transform.position + rightDirection.normalized * moveStep;
+            transform.position = transform.position + rightDirection * moveStep;
 
             distanceTraveled = distanceTraveled + moveStep;
         }
+
+
+
+        //jump
         bool isUp = false;
-
-
-    //jump
         isUp = (Input.GetKeyDown(KeyCode.Space));
         if (isUp == true)
         {
@@ -88,5 +98,15 @@ public class playerMovement : MonoBehaviour
 
             distanceTraveled = distanceTraveled + jumpStep;
         }
-    } 
+
+        //SPRINTING
+        bool sprinting = false;
+
+        sprinting = (Input.GetKey(KeyCode.LeftShift));
+        if (sprinting == true)
+        {
+            baseSpeed = (sprintSpeed);
+        }
+
+    }
 }
