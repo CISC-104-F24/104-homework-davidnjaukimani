@@ -12,7 +12,7 @@ public class cameraRotation : MonoBehaviour
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
 
- 
+    public Transform playerBody;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +33,6 @@ public class cameraRotation : MonoBehaviour
         rotationY -= mouseY * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, -rotationLimit, rotationLimit);
         transform.rotation = Quaternion.Euler(rotationY, rotationX, 0);
+        playerBody.rotation = Quaternion.Euler(rotationY, rotationX, 0);
     }
 }
