@@ -7,6 +7,13 @@ using UnityEngine;
  
 public class playerCharacterMovement : MonoBehaviour
 {
+    //variables
+    public float baseSpeed = 3.0f;
+    public float jumpSpeed = 10f;
+    public float sprintSpeed = 5.0f;
+    Vector3 upwardDirection = new Vector3(0f, 1.0f, 0f);
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +23,7 @@ public class playerCharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //player input
+        //player directional input
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -33,11 +40,32 @@ public class playerCharacterMovement : MonoBehaviour
         Vector3 rightRelativeVerticalInput = horizontalInput * right;
 
         // camera-relative movement (the sands of time shifted in the amount of time it took me to figure this out)
-        float baseSpeed = 3.0f;
         float moveStep = baseSpeed * Time.deltaTime;
         Vector3 cameraRelativeMovement = (forwardRelativeVerticalInput + rightRelativeVerticalInput) * moveStep;
         this.transform.Translate (cameraRelativeMovement, Space.World);
 
-        
+        //jump
+        bool isUp = false;
+        isUp = (Input.GetKeyDown(KeyCode.Space));
+        if (isUp == true)
+        {
+
+            float jumpStep = jumpSpeed * Time.deltaTime;
+            transform.position = transform.position + upwardDirection;
+
+        }
+
+        //sprinting
+        bool sprinting = false;
+        sprinting = (Input.GetKey(KeyCode.LeftShift));
+        if (sprinting)
+        {
+            baseSpeed = sprintSpeed;
+        }
+        else
+        {
+            baseSpeed = 2.0f;
+
+        }
     }
 }

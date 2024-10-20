@@ -6,7 +6,6 @@ public class playerRotation : MonoBehaviour
 {
     //variables
     public float sensitivityX = 2.0f;
-    public float sensitivityY = 2.0f;
     public Vector3 mouseMovement;
 
   

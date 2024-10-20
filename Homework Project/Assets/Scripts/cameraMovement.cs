@@ -5,9 +5,8 @@ using UnityEngine;
 public class cameraRotation : MonoBehaviour
 {
     //variables
-    public float sensitivityY = 1.0f;
+    public float sensitivityY = 0.5f;
     public Vector3 mouseMovement;
-
 
     void Start()
     {
