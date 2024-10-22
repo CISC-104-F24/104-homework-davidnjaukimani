@@ -57,45 +57,42 @@ public class playerCharacterMovement : MonoBehaviour
 
         //jump
         //0.2608557
-        if (playerCharacter.position.y < 0.261)
 
+        minJumpForce = 10.0f;
+        maxJumpForce = 10.12f;
+        bool isJumpKeyDown = false;
+        isJumpKeyDown = (Input.GetKey(KeyCode.Space));
+        if (isJumpKeyDown == true)
+        
         {
-            minJumpForce = 10.0f;
-            maxJumpForce = 10.12f;
-            bool isJumpKeyDown = false;
-            isJumpKeyDown = (Input.GetKey(KeyCode.Space));
-            if (isJumpKeyDown == true)
 
+         
+            if (jumpForce < maxJumpForce)
             {
-
-
-                if (jumpForce < maxJumpForce)
-                {
-                    jumpForce += minJumpForce * Time.deltaTime;
-                }
-
-                actualJump = upwardDirection + (upwardDirection * jumpForce);
-
-                bool isJumpKeyReleased = false;
-                isJumpKeyReleased = (Input.GetKeyUp(KeyCode.Space));
-                if (isJumpKeyReleased == true)
-                {
-                    playerCharacter.AddForce((actualJump), ForceMode.Impulse);
-                    jumpForce = 0f;
-                }
-
+                jumpForce += minJumpForce * Time.deltaTime;
             }
-            else
+
+            actualJump = upwardDirection + (upwardDirection * jumpForce);
+
+            bool isJumpKeyReleased = false;
+            isJumpKeyReleased = (Input.GetKeyUp(KeyCode.Space));
+            if (isJumpKeyReleased == true)
             {
-                bool isJumpKeyReleased = false;
-                isJumpKeyReleased = (Input.GetKeyUp(KeyCode.Space));
-                if (isJumpKeyReleased == true)
-                {
-                    playerCharacter.AddForce((actualJump), ForceMode.Impulse);
-                    jumpForce = 0f;
-                }
-
+                playerCharacter.AddForce((actualJump), ForceMode.Impulse);
+                jumpForce = 0f;
             }
+
+        }
+        else
+        {
+            bool isJumpKeyReleased = false;
+            isJumpKeyReleased = (Input.GetKeyUp(KeyCode.Space));
+            if (isJumpKeyReleased == true)
+            {
+                playerCharacter.AddForce((actualJump), ForceMode.Impulse);
+                jumpForce = 0f;
+            }
+
         }
         //sprinting
 
