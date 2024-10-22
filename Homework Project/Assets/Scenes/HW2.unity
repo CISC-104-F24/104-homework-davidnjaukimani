@@ -480,6 +480,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8557b1abe127e4899ab35f9276e26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDavidCurrentlyEatingABurrito: 1
+  baseSpeed: 3
+  sprintSpeed: 5
+  upwardDirection: {x: 0, y: 1, z: 0}
+  actualJump: {x: 0, y: 0, z: 0}
+  playerCharacter: {fileID: 0}
 --- !u!114 &612882347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 2
-  sensitivityY: 2
   mouseMovement: {x: 0, y: 0, z: 0}
 --- !u!1 &665065421
 GameObject:
@@ -909,6 +914,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivityY: 2
   mouseMovement: {x: 0, y: 0, z: 0}
+--- !u!1 &1946851459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3002502820410300933, guid: dc46261ca08a07e4d875516c9dacce34, type: 3}
+  m_PrefabInstance: {fileID: 3845306776539394527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1946851464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946851459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1496398, y: 14.742584, z: 1.9860773}
+  m_Center: {x: -0.077427864, y: 7.371292, z: -0.30755773}
 --- !u!1001 &3845306776539394527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,12 +994,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978834235012406527, guid: dc46261ca08a07e4d875516c9dacce34, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3002502820410300933, guid: dc46261ca08a07e4d875516c9dacce34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1946851464}
   m_SourcePrefab: {fileID: 100100000, guid: dc46261ca08a07e4d875516c9dacce34, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
