@@ -15,6 +15,7 @@ public class playerCharacterMovement : MonoBehaviour
 
     public Vector3 upwardDirection = new Vector3(0f, 1.0f, 0f);
     public Vector3 actualJump = new Vector3 (0f, 0f, 0f);
+    
 
     private bool onTheGround;
 
@@ -34,32 +35,13 @@ public class playerCharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //player directional input
-        float verticalInput = Input.GetAxis("Vertical");
-        float horizontalInput = Input.GetAxis("Horizontal");
+        
 
-        // camera-normalized directional vectors (this took way too long to figure out)
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-        //direction-relative input vectors (took even longer to figure out, my goodness)
-        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
-        Vector3 rightRelativeVerticalInput = horizontalInput * right;
-
-        // camera-relative movement (the sands of time shifted in the amount of time it took me to figure this out)
-        float moveStep = baseSpeed * Time.deltaTime;
-        Vector3 cameraRelativeMovement = (forwardRelativeVerticalInput + rightRelativeVerticalInput) * moveStep;
-        this.transform.Translate (cameraRelativeMovement, Space.World);
-
-        //jump
+        // SPACE TO JUMP
         //0.2608557
 
         minJumpForce = 10.0f;
-        maxJumpForce = 10.12f;
+        maxJumpForce = 20.2f;
         bool isJumpKeyDown = false;
         isJumpKeyDown = (Input.GetKey(KeyCode.Space));
         if (isJumpKeyDown == true)
@@ -94,18 +76,40 @@ public class playerCharacterMovement : MonoBehaviour
             }
 
         }
-        //sprinting
+        //HOLD SHIFT TO SPRINT
 
-            bool sprinting = false;
+        bool sprinting = false;
         sprinting = (Input.GetKey(KeyCode.LeftShift));
+        //player directional input WASD TO MOVE
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        // camera-normalized directional vectors (this took way too long to figure out)
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        //direction-relative input vectors (took even longer to figure out, my goodness)
+        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
+        Vector3 rightRelativeVerticalInput = horizontalInput * right;
+        float moveStepSprint = sprintSpeed * Time.deltaTime;
+        float moveStep = baseSpeed * Time.deltaTime;
         if (sprinting)
         {
-            baseSpeed = sprintSpeed;
+            Vector3 cameraRelativeMovement = (forwardRelativeVerticalInput + rightRelativeVerticalInput) * moveStepSprint;
+            this.transform.Translate(cameraRelativeMovement, Space.World);
         }
         else
         {
-            baseSpeed = 2.0f;
+            Vector3 cameraRelativeMovement = (forwardRelativeVerticalInput + rightRelativeVerticalInput) * moveStep;
+            this.transform.Translate(cameraRelativeMovement, Space.World);
 
         }
+       
+       
+        
     }
 }
